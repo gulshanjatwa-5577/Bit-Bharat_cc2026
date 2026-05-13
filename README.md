@@ -1,33 +1,36 @@
-# Bit-Bharat_cc2026
+UPI Pulse - Digital India 🇮🇳
 
-UPI Pulse — Digital India Project 🇮🇳
-Project Information
-Theme: 10. India: Digital Payments (UPI)
-
+Hackathon Theme: 10. India: Digital Payments (UPI)
 Team Name: [Bit-Bharat]
 
-Hackathon: Creative Coding 2026
+ What is this project?
+We built "UPI Pulse" to show how India's UPI system works. Instead of just making a simple animation, we built a working **Live Simulator**. We wanted to show exactly what happens when we scan and pay at a local store, and how this Indian tech is now going global.
 
-What is this project?
-This project is an interactive visualization of UPI (Unified Payments Interface). We wanted to show how India's digital payment system works and how it is now helping other countries too. Our goal is to show the "pulse" of digital money in India using code and animations.
+ Features we added:
 
-Main Features (What you can see)
-We have created 4 different scenes in this sketch:
+ 1. Working Phone Simulator
+We made a mobile screen and a Merchant QR code on the canvas. 
+* You can use your real keyboard to type the payment amount.
+* Press ENTER, then type your 6-digit PIN.
+* It shows a "Verifying with Bank" loading screen just like real apps (Paytm/PhonePe).
 
-National Network: Shows how money flows between big cities like Delhi, Mumbai, and Bangalore. You can see live "pulses" moving on the map.
+ 2. Real Voice Soundbox
+We added a really cool feature! When the payment is successful, the computer actually speaks the amount out loud (for example: "Payment of 500 rupees successful"). We did this to give the feel of a real shop's Soundbox.
 
-Global Impact: Shows how UPI is going global. We connected India to countries like UAE, Singapore, and France to show international reach.
+ 3. Global Connection Map
+We drew an India map at the center. It shows lines connecting to other countries where UPI is expanding, like the UAE, Singapore, and France.
 
-Data Dashboard: A simple graph that shows how UPI transactions have grown from FY21 to FY24. The bars animate to show growth.
+ 4. Data Dashboard
+A clean screen that shows the big numbers of UPI, like total users and total volume. 
 
-Payment Process: A small simulation of how a transaction actually happens (scanning, PIN, and success).
+ How to test our project
+1. Click on the  LIVE SIMULATOR button at the bottom.
+2. Click anywhere on the screen to start.
+3. Type any amount using your keyboard (example: 150) and press ENTER.
+4. Type a PIN and press ENTER.
+5. Turn on your laptop volume and listen to the success voice!
 
-How we built it
-Language: We used p5.js (JavaScript) for all animations.
-
-Logic: Used simple "if-else" scenes so users can switch between different parts of the project.
-
-Graphics: Made a custom India map and used particle systems to show money moving.
-
-Interaction: * Press SPACE to change the scene.
-
+ Tech Used:
+p5.js for all the graphics, scenes, and interactions.
+Javascript Voice API for the soundbox speech effect.
+p5.sound used.
