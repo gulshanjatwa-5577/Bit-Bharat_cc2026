@@ -223,3 +223,40 @@ function simulatorScene() {
     fill(106, 27, 154); rect(px, py + 140, 160, 40, 20);
     fill(255); textSize(12); textStyle(BOLD); text("PRESS ENTER TO PAY", px, py + 140); textStyle(NORMAL);
   }
+else if (upiStep === 2) { 
+    fill(50); textSize(14); text("Enter 6-Digit UPI PIN", px, py - 80);
+    
+    let hiddenPin = "";
+    for(let i=0; i<typedPin.length; i++) hiddenPin += "● ";
+    if(typedPin.length === 0) hiddenPin = "Type PIN...";
+    
+    fill(typedPin.length > 0 ? 30 : 150); 
+    textSize(24); 
+    drawingContext.letterSpacing = "5px"; 
+    text(hiddenPin, px, py - 20);
+    drawingContext.letterSpacing = "0px"; 
+    
+    fill(106, 27, 154); rect(px, py + 140, 160, 40, 20);
+    fill(255); textSize(12); textStyle(BOLD); text("PRESS ENTER TO SUBMIT", px, py + 140); textStyle(NORMAL);
+  }
+  else if (upiStep === 3) { 
+    push();
+    translate(px, py - 30);
+    rotate(frameCount * 0.1);
+    noFill(); stroke(106, 27, 154); strokeWeight(4);
+    arc(0, 0, 50, 50, 0, PI + QUARTER_PI);
+    pop();
+    fill(50); textSize(14); text("Verifying with Bank...", px, py + 40);
+    
+    if(millis() - authTimer > 1500) {
+      upiStep = 4;
+      currentTxnId = "TXN" + floor(random(10000000, 99999999)); 
+      playSuccessSound(); 
+    }
+  }
+  else if (upiStep === 4) { 
+    fill(40, 167, 69); ellipse(px, py - 40, 70, 70);
+    fill(255); textSize(36); text("✓", px, py - 40);
+    fill(30); textSize(18); textStyle(BOLD); text("Payment Successful", px, py + 20); textStyle(NORMAL);
+    fill(100); textSize(12); text("Txn ID: " + currentTxnId, px, py + 45); 
+  }
