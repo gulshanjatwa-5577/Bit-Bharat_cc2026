@@ -421,3 +421,46 @@ function drawMetricCardCenter(x, y, w, h, title, value, sub) {
   text(sub, x, y + h * 0.25);
   pop();
 }
+class Particle {
+  constructor() {
+    this.x = random(width); this.y = random(height);
+    this.vx = random(-0.3, 0.3); this.vy = random(-0.3, 0.3);
+    this.size = random(1, 3); this.alpha = random(40, 140);
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < -10) this.x = width + 10;
+    if (this.x > width + 10) this.x = -10;
+    if (this.y < -10) this.y = height + 10;
+    if (this.y > height + 10) this.y = -10;
+  }
+  show() {
+    fill(0, 180, 210, this.alpha); noStroke(); ellipse(this.x, this.y, this.size);
+  }
+}
+
+class Ripple {
+  constructor(x, y, size, col) {
+    this.x = x; this.y = y; this.radius = 5;
+    this.maxRadius = size || 60; this.alpha = 200; this.color = col || color(0, 200, 255);
+  }
+  update() {
+    this.radius += 3.5; this.alpha -= 6; return this.alpha > 0;
+  }
+  show() {
+    noFill(); stroke(red(this.color), green(this.color), blue(this.color), this.alpha);
+    strokeWeight(1.5); ellipse(this.x, this.y, this.radius * 2);
+  }
+}
+
+function drawDigitalGrid() {
+  stroke(20, 50, 80, 60);
+  strokeWeight(0.5);
+  let step = 45;
+  for (let x = 0; x < width; x += step) line(x, 0, x, height);
+  for (let y = 0; y < height; y += step) line(0, y, width, y);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
