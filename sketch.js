@@ -464,3 +464,45 @@ function drawDigitalGrid() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+function keyPressed() {
+  if (scene === 1 && !isTransitioning) {
+    if (upiStep === 1) {
+      if (keyCode === BACKSPACE) {
+        typedAmount = typedAmount.substring(0, typedAmount.length - 1);
+      } 
+      else if (keyCode === ENTER && typedAmount.length > 0) {
+        upiStep = 2; 
+      } 
+      else if (key >= '0' && key <= '9' && typedAmount.length < 6) {
+        typedAmount += key;
+      }
+    } 
+    else if (upiStep === 2) {
+      if (keyCode === BACKSPACE) {
+        typedPin = typedPin.substring(0, typedPin.length - 1);
+      } 
+      else if (keyCode === ENTER && typedPin.length > 0) {
+        upiStep = 3; 
+        authTimer = millis(); 
+      } 
+      else if (key >= '0' && key <= '9' && typedPin.length < 6) {
+        typedPin += key;
+      }
+    }
+  }
+}
+
+function mousePressed() {
+  ripples.push(new Ripple(mouseX, mouseY, 50, color(0, 255, 180)));
+  
+  if (scene === 1 && !isTransitioning) {
+    if (upiStep === 0) {
+      upiStep = 1; 
+      typedAmount = ""; 
+      typedPin = "";    
+    }
+    else if (upiStep === 4) {
+      upiStep = 0; 
+    }
+  }
+}
