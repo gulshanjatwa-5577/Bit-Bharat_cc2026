@@ -108,3 +108,80 @@ function createSceneButtons() {
     btn.parent(buttonDiv);
   }
 }
+function introScene() {
+  let cx = width/2;
+  let cy = height/2 - 50;
+  push();
+  textAlign(CENTER, CENTER);
+  textFont('monospace');
+  
+  let glow = map(sin(frameCount * 0.02), -1, 1, 100, 255);
+  fill(0, 255, 210, glow);
+  textSize(min(64, width/10));
+  text("UPI PULSE", cx, cy - 30);
+  
+  fill(255);
+  textSize(min(24, width/20));
+  text("The Future of Digital Bharat", cx, cy + 30);
+  
+  fill(180, 240, 255);
+  textSize(min(16, width/30));
+  text("India's Unified Payments Interface — Global Blueprint", cx, cy + 70);
+  
+  for (let i = 0; i < 3; i++) {
+    let radius = 80 + (frameCount * 2 + i * 60) % 180;
+    noFill();
+    stroke(0, 255, 200, 100 - i * 20);
+    strokeWeight(1.5);
+    ellipse(cx, cy + 100, radius, radius);
+  }
+  pop();
+}
+function simulatorScene() {
+  push();
+  textAlign(CENTER, CENTER); 
+  
+  fill(0, 255, 200);
+  textSize(min(28, width/25));
+  text("📱 REAL-TIME UPI TRANSACTION FLOW", width/2, 60);
+  
+  fill(200);
+  textSize(14);
+  if(upiStep === 0 || upiStep === 4) text("CLICK ANYWHERE TO ADVANCE NEXT STEP", width/2, 95);
+  else text("TYPE ON KEYBOARD & PRESS 'ENTER' TO PROCEED", width/2, 95);
+
+  let mx = width * 0.3;
+  let my = height * 0.5;
+  let px = width * 0.7;
+  let py = height * 0.5;
+
+  // -- MERCHANT SIDE --
+  fill(15, 25, 45, 200);
+  stroke(0, 230, 200, 150);
+  strokeWeight(2);
+  rectMode(CENTER);
+  rect(mx, my, 220, 320, 15);
+  
+  fill(255);
+  noStroke();
+  rect(mx, my - 30, 140, 140, 5); 
+  fill(0);
+  rect(mx - 40, my - 70, 30, 30); rect(mx + 40, my - 70, 30, 30); rect(mx - 40, my + 10, 30, 30);
+  
+  fill(0, 255, 200);
+  textSize(18); textStyle(BOLD);
+  text("BHARAT QR", mx, my + 80);
+  textStyle(NORMAL);
+  fill(255);
+  textSize(12);
+  text("Store ID: KIRANA-101", mx, my + 105);
+
+  if (upiStep === 4) { 
+    fill(40, 167, 69);
+    rect(mx, my + 150, 180, 40, 5);
+    fill(255);
+    textSize(14); textStyle(BOLD);
+    text("₹ " + typedAmount + " RECEIVED ✓", mx, my + 150);
+    textStyle(NORMAL);
+  }
+ 
