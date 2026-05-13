@@ -288,3 +288,68 @@ else if (upiStep === 2) {
   }
   pop();
 }
+function globalScene() {
+  push();
+  textAlign(CENTER, CENTER);
+  
+  fill(255);
+  textSize(28);
+  text("🌏 GLOBAL IMPACT: UPI Inspiring the World", width/2, 55);
+  
+  let cx = width / 2;
+  let cy = height / 2;
+
+  drawDetailedIndiaMap(cx, cy, 0.4);
+  
+  let countries = [
+    { x: 0.75, y: 0.4, name: "Singapore" }, { x: 0.35, y: 0.45, name: "UAE" },
+    { x: 0.25, y: 0.35, name: "UK" }, { x: 0.15, y: 0.52, name: "USA" },
+    { x: 0.85, y: 0.70, name: "Australia" }, { x: 0.30, y: 0.65, name: "Kenya" },
+    { x: 0.40, y: 0.25, name: "France" }, { x: 0.85, y: 0.20, name: "Qatar" }
+  ];
+  
+  for (let c of countries) {
+    let x = c.x * width;
+    let y = c.y * height;
+    let pulse = 8 + sin(frameCount * 0.08) * 3;
+    
+    stroke(0, 255, 200, 80);
+    strokeWeight(1.5);
+    line(cx, cy, x, y);
+    
+    fill(0, 255, 200, 200);
+    noStroke();
+    ellipse(x, y, 12 + pulse);
+    fill(255);
+    textSize(11);
+    textStyle(BOLD);
+    text(c.name, x, y - 15);
+    textStyle(NORMAL);
+  }
+  
+  fill(0, 255, 150);
+  ellipse(cx, cy, 15, 15);
+  fill(255);
+  textSize(14);
+  textStyle(BOLD);
+  text("🇮🇳 INDIA", cx, cy - 18);
+  pop();
+}
+
+function drawDetailedIndiaMap(x, y, scaleFactor) {
+  push();
+  translate(x, y);
+  scale(scaleFactor);
+  fill(15, 35, 70, 220); 
+  stroke(0, 255, 200, 180); 
+  strokeWeight(3);
+  
+  beginShape();
+  vertex(-20, -200); vertex(20, -180); vertex(40, -120); vertex(100, -80);  
+  vertex(150, -70); vertex(140, -40); vertex(100, -30); vertex(110, 20);   
+  vertex(80, 80); vertex(30, 200); vertex(-20, 180); vertex(-60, 120);
+  vertex(-120, 60); vertex(-150, 20); vertex(-130, -30); vertex(-80, -80);
+  vertex(-40, -150);
+  endShape(CLOSE);
+  pop();
+}
