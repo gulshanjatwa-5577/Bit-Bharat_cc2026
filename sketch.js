@@ -260,3 +260,31 @@ else if (upiStep === 2) {
     fill(30); textSize(18); textStyle(BOLD); text("Payment Successful", px, py + 20); textStyle(NORMAL);
     fill(100); textSize(12); text("Txn ID: " + currentTxnId, px, py + 45); 
   }
+ let labels = ["SCAN", "AMT", "PIN", "DONE"];
+  for (let i = 0; i < 4; i++) {
+    let nx = px - 80 + (i * 53); 
+    let ny = py + 200; 
+    
+    let isActive = false;
+    if(i < 3 && i <= upiStep) isActive = true;
+    if(i === 3 && upiStep === 4) isActive = true; 
+    
+    if(i < 3) {
+      stroke(200); strokeWeight(2);
+      line(nx + 8, ny, nx + 45, ny);
+      if (isActive && upiStep > i) { 
+        stroke(106, 27, 154); 
+        line(nx + 8, ny, nx + 45, ny); 
+      }
+    }
+
+    noStroke();
+    fill(isActive ? color(106, 27, 154) : color(200)); 
+    ellipse(nx, ny, 16);
+    
+    fill(100); textSize(9); textStyle(BOLD);
+    text(labels[i], nx, ny + 15);
+    textStyle(NORMAL);
+  }
+  pop();
+}
