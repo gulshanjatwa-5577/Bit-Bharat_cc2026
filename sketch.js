@@ -184,4 +184,42 @@ function simulatorScene() {
     text("₹ " + typedAmount + " RECEIVED ✓", mx, my + 150);
     textStyle(NORMAL);
   }
- 
+ // -- PHONE SIDE --
+  stroke(60);
+  strokeWeight(8);
+  fill(15);
+  rect(px, py, 250, 480, 30); 
+  noStroke();
+  fill(240, 245, 255);
+  rect(px, py, 234, 464, 25); 
+
+  fill(106, 27, 154);
+  rect(px, py - 207, 234, 50, 25, 25, 0, 0);
+  fill(255);
+  textSize(14); textStyle(BOLD);
+  text("UPI SECURE PAY", px, py - 207);
+  textStyle(NORMAL);
+
+  if (upiStep === 0) { 
+    fill(50); textSize(14); text("Scanning QR...", px, py - 100);
+    noFill(); stroke(0, 217, 255); strokeWeight(2);
+    rect(px, py - 10, 140, 140);
+    
+    let laserY = py - 80 + simScanY;
+    stroke(0, 255, 150); line(px - 60, laserY, px + 60, laserY);
+    simScanY += 3 * simLaserDir;
+    if (simScanY > 140 || simScanY < 0) simLaserDir *= -1;
+  } 
+  else if (upiStep === 1) { 
+    fill(50); textSize(14); text("Paying to KIRANA-101", px, py - 80);
+    fill(255); stroke(200); strokeWeight(1); rect(px, py - 20, 180, 50, 10);
+    
+    let cursor = (frameCount % 60 < 30) ? "|" : "";
+    let displayAmount = typedAmount.length > 0 ? "₹ " + typedAmount : "₹ 0";
+    
+    noStroke(); fill(30); textSize(24); 
+    text(displayAmount + cursor, px, py - 20);
+    
+    fill(106, 27, 154); rect(px, py + 140, 160, 40, 20);
+    fill(255); textSize(12); textStyle(BOLD); text("PRESS ENTER TO PAY", px, py + 140); textStyle(NORMAL);
+  }
